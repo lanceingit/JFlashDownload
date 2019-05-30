@@ -25,26 +25,26 @@ public class MainWin {
                 try {
                     Object o = t.getTransferData(DataFlavor.javaFileListFlavor);
 
-                    String filepath = o.toString();
-                    System.out.println(filepath);
-                    if(filepath.startsWith("[")) {
-                        filepath = filepath.substring(1);
+                    String fileString = o.toString();
+                    System.out.println(fileString);
+                    if(fileString.startsWith("[")) {
+                        fileString = fileString.substring(1);
                     }
-                    if(filepath.endsWith("]")) {
-                        filepath = filepath.substring(0, filepath.length()-1);
+                    if(fileString.endsWith("]")) {
+                        fileString = fileString.substring(0, fileString.length()-1);
                     }
 
-                    if(!filepath.endsWith(".hex")) {
-                        File file = new File(filepath + "\\build");
+                    if(!fileString.endsWith(".hex")) {
+                        File file = new File(fileString + "\\build");
                         for (File f : file.listFiles()) {
                             if (f.toString().endsWith(".hex")) {
-                                filepath = f.toString();
+                                fileString = f.toString();
                             }
                         }
                     }
 
-                    textAreaFilePath.setText(filepath);
-                    filePath = filepath;
+                    textAreaFilePath.setText(fileString);
+                    filePath = fileString;
                     return true;
 
                 } catch (UnsupportedFlavorException e) {
